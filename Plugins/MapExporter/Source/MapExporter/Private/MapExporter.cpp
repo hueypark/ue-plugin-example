@@ -1,8 +1,9 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
+﻿// Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "MapExporter.h"
-#include "MapExporterStyle.h"
+
 #include "MapExporterCommands.h"
+#include "MapExporterStyle.h"
 #include "Misc/MessageDialog.h"
 #include "ToolMenus.h"
 
@@ -12,21 +13,22 @@ static const FName MapExporterTabName("MapExporter");
 
 void FMapExporterModule::StartupModule()
 {
-	// This code will execute after your module is loaded into memory; the exact timing is specified in the .uplugin file per-module
-	
+	// This code will execute after your module is loaded into memory; the exact timing is specified in the .uplugin
+	// file per-module
+
 	FMapExporterStyle::Initialize();
 	FMapExporterStyle::ReloadTextures();
 
 	FMapExporterCommands::Register();
-	
+
 	PluginCommands = MakeShareable(new FUICommandList);
 
 	PluginCommands->MapAction(
 		FMapExporterCommands::Get().PluginAction,
-		FExecuteAction::CreateRaw(this, &FMapExporterModule::PluginButtonClicked),
-		FCanExecuteAction());
+		FExecuteAction::CreateRaw(this, &FMapExporterModule::PluginButtonClicked), FCanExecuteAction());
 
-	UToolMenus::RegisterStartupCallback(FSimpleMulticastDelegate::FDelegate::CreateRaw(this, &FMapExporterModule::RegisterMenus));
+	UToolMenus::RegisterStartupCallback(
+		FSimpleMulticastDelegate::FDelegate::CreateRaw(this, &FMapExporterModule::RegisterMenus));
 }
 
 void FMapExporterModule::ShutdownModule()
@@ -47,10 +49,9 @@ void FMapExporterModule::PluginButtonClicked()
 {
 	// Put your "OnButtonClicked" stuff here
 	FText DialogText = FText::Format(
-							LOCTEXT("PluginButtonDialogText", "Add code to {0} in {1} to override this button's actions"),
-							FText::FromString(TEXT("FMapExporterModule::PluginButtonClicked()")),
-							FText::FromString(TEXT("MapExporter.cpp"))
-					   );
+		LOCTEXT("PluginButtonDialogText", "Add code to {0} in {1} to override this button's actions"),
+		FText::FromString(TEXT("FMapExporterModule::PluginButtonClicked()")),
+		FText::FromString(TEXT("MapExporter.cpp")));
 	FMessageDialog::Open(EAppMsgType::Ok, DialogText);
 }
 
@@ -72,7 +73,8 @@ void FMapExporterModule::RegisterMenus()
 		{
 			FToolMenuSection& Section = ToolbarMenu->FindOrAddSection("Settings");
 			{
-				FToolMenuEntry& Entry = Section.AddEntry(FToolMenuEntry::InitToolBarButton(FMapExporterCommands::Get().PluginAction));
+				FToolMenuEntry& Entry =
+					Section.AddEntry(FToolMenuEntry::InitToolBarButton(FMapExporterCommands::Get().PluginAction));
 				Entry.SetCommandList(PluginCommands);
 			}
 		}
@@ -80,5 +82,5 @@ void FMapExporterModule::RegisterMenus()
 }
 
 #undef LOCTEXT_NAMESPACE
-	
+
 IMPLEMENT_MODULE(FMapExporterModule, MapExporter)

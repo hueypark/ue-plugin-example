@@ -1,4 +1,4 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
+﻿// Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "MapExporterCommands.h"
 
@@ -6,7 +6,8 @@
 
 void FMapExporterCommands::RegisterCommands()
 {
-	UI_COMMAND(PluginAction, "MapExporter", "Execute MapExporter action", EUserInterfaceActionType::Button, FInputGesture());
+	UI_COMMAND(
+		PluginAction, "MapExporter", "Execute MapExporter action", EUserInterfaceActionType::Button, FInputGesture());
 }
 
 #undef LOCTEXT_NAMESPACE

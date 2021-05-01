@@ -1,4 +1,4 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
+﻿// Copyright Epic Games, Inc. All Rights Reserved.
 
 #pragma once
 
@@ -11,18 +11,15 @@ class FMenuBuilder;
 class FMapExporterModule : public IModuleInterface
 {
 public:
-
 	/** IModuleInterface implementation */
 	virtual void StartupModule() override;
 	virtual void ShutdownModule() override;
-	
+
 	/** This function will be bound to Command. */
 	void PluginButtonClicked();
-	
+
 private:
-
 	void RegisterMenus();
-
 
 private:
 	TSharedPtr<class FUICommandList> PluginCommands;

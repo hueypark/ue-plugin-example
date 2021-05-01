@@ -1,0 +1,18 @@
+﻿root = true
+
+[*]
+charset = utf-8-bom
+end_of_line = crlf
+insert_final_newline = true
+
+# UE4 project file
+[*.uproject]
+indent_style = tab
+
+# Module target files
+[*.cs]
+indent_style = tab
+
+# C++ source files
+[{**.cpp,**.h}]
+indent_style = tab

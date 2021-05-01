@@ -1,4 +1,4 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
+﻿// Copyright Epic Games, Inc. All Rights Reserved.
 
 #pragma once
 
@@ -9,9 +9,12 @@
 class FMapExporterCommands : public TCommands<FMapExporterCommands>
 {
 public:
-
 	FMapExporterCommands()
-		: TCommands<FMapExporterCommands>(TEXT("MapExporter"), NSLOCTEXT("Contexts", "MapExporter", "MapExporter Plugin"), NAME_None, FMapExporterStyle::GetStyleSetName())
+		: TCommands<FMapExporterCommands>(
+			  TEXT("MapExporter"),
+			  NSLOCTEXT("Contexts", "MapExporter", "MapExporter Plugin"),
+			  NAME_None,
+			  FMapExporterStyle::GetStyleSetName())
 	{
 	}
 
@@ -19,5 +22,5 @@ public:
 	virtual void RegisterCommands() override;
 
 public:
-	TSharedPtr< FUICommandInfo > PluginAction;
+	TSharedPtr<FUICommandInfo> PluginAction;
 };
