@@ -9,6 +9,10 @@ insert_final_newline = true
 [*.uproject]
 indent_style = tab
 
+# UE4 plugin file
+[*.uplugin]
+indent_style = tab
+
 # Module target files
 [*.cs]
 indent_style = tab
