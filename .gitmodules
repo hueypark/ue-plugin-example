@@ -1,0 +1,3 @@
+[submodule "Plugins/TextAsset"]
+	path = Plugins/TextAsset
+	url = ../../ue4plugins/TextAsset.git
