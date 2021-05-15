@@ -1,0 +1,24 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "DataTableEx",
+	"Description": "데이터 테이블 확장입니다.",
+	"Category": "Other",
+	"CreatedBy": "hueypark",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "DataTableEx",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}
