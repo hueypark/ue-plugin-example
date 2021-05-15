@@ -19,6 +19,11 @@
 			"Name": "DataTableEx",
 			"Type": "Runtime",
 			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "DataTableExEditor",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
 		}
 	]
 }
