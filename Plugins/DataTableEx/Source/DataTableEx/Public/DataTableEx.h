@@ -1,15 +1,12 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
+﻿#pragma once
 
-#pragma once
+#include "Engine/DataTable.h"
 
-#include "CoreMinimal.h"
-#include "Modules/ModuleManager.h"
+#include "DataTableEx.generated.h"
 
-class FDataTableExModule : public IModuleInterface
+// 언리얼 엔진 기본 데이터 테이블의 확장버전 입니다.
+UCLASS(MinimalAPI, BlueprintType)
+class UDataTableEx : public UDataTable
 {
-public:
-
-	/** IModuleInterface implementation */
-	virtual void StartupModule() override;
-	virtual void ShutdownModule() override;
+	GENERATED_UCLASS_BODY()
 };
