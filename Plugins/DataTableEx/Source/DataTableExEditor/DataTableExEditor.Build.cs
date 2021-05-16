@@ -34,6 +34,7 @@ public class DataTableExEditor : ModuleRules
 			{
 				"CoreUObject",
 				"DataTableEx",
+				"EditorStyle",
 				"Engine",
 				"Slate",
 				"SlateCore",
