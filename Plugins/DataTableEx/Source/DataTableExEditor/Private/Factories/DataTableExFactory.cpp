@@ -4,7 +4,7 @@
 #include "DataTableExFactoryUI.h"
 #include "StructViewerModule.h"
 
-#define LOCTEXT_NAMESPACE "DataTableFactory"
+#define LOCTEXT_NAMESPACE "DataTableExFactory"
 
 UDataTableExFactory::UDataTableExFactory(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
@@ -42,4 +42,4 @@ bool UDataTableExFactory::ShouldShowInNewMenu() const
 	return true;
 }
 
-#undef LOCTEXT_NAMESPACE // "DataTableFactory"
+#undef LOCTEXT_NAMESPACE // "DataTableExFactory"

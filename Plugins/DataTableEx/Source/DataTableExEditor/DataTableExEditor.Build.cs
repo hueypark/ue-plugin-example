@@ -33,6 +33,7 @@ public class DataTableExEditor : ModuleRules
 			new string[]
 			{
 				"CoreUObject",
+				"DataTableEditor",
 				"DataTableEx",
 				"EditorStyle",
 				"Engine",
