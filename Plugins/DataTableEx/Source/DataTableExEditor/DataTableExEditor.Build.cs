@@ -16,8 +16,7 @@ public class DataTableExEditor : ModuleRules
 
 		PrivateIncludePaths.AddRange(
 			new string[] {
-				"TextAssetEditor/Private",
-				"TextAssetEditor/Private/Factories",
+				"TextAssetEditor",
 			}
 			);
 

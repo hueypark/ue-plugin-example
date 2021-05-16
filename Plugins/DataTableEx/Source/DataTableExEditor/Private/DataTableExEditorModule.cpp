@@ -1,19 +1,42 @@
 ﻿#include "DataTableExEditorModule.h"
 
-#define LOCTEXT_NAMESPACE "FDataTableExEditorModule"
+#include "AssetTools/DataTableExActions.h"
+#include "AssetToolsModule.h"
 
 void FDataTableExEditorModule::StartupModule()
 {
-	// This code will execute after your module is loaded into memory; the exact timing is specified in the .uplugin
-	// file per-module
+	_RegisterAssetTools();
 }
 
 void FDataTableExEditorModule::ShutdownModule()
 {
-	// This function may be called during shutdown to clean up your module.  For modules that support dynamic reloading,
-	// we call this function before unloading the module.
+	_UnregisterAssetTools();
 }
 
-#undef LOCTEXT_NAMESPACE
+void FDataTableExEditorModule::_RegisterAssetTools()
+{
+	IAssetTools& assetTools = FModuleManager::LoadModuleChecked<FAssetToolsModule>("AssetTools").Get();
+
+	auto action = MakeShareable(new FDataTableExActions());
+
+	assetTools.RegisterAssetTypeActions(action);
+	m_registeredAssetTypeActions.Add(action);
+}
+
+void FDataTableExEditorModule::_UnregisterAssetTools()
+{
+	FAssetToolsModule* assetToolsModule = FModuleManager::GetModulePtr<FAssetToolsModule>("AssetTools");
+	if (!assetToolsModule)
+	{
+		return;
+	}
+
+	IAssetTools& assetTools = assetToolsModule->Get();
+
+	for (auto action : m_registeredAssetTypeActions)
+	{
+		assetTools.UnregisterAssetTypeActions(action);
+	}
+}
 
 IMPLEMENT_MODULE(FDataTableExEditorModule, DataTableExEditor)
