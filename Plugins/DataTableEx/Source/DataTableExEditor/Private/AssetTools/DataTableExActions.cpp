@@ -34,23 +34,32 @@ void FDataTableExActions::OpenAssetEditor(
 
 	for (auto iter = InObjects.CreateConstIterator(); iter; ++iter)
 	{
-		auto dataTableEx = Cast<UDataTableEx>(*iter);
+		UDataTableEx* dataTableEx = Cast<UDataTableEx>(*iter);
 
 		TSharedRef<IDataTableEditor> dataTableEditor =
 			dataTableEditorModule.CreateDataTableEditor(EToolkitMode::Standalone, EditWithinLevelEditor, dataTableEx);
+
+		TWeakObjectPtr<UDataTableEx> weakDataTableEx(dataTableEx);
 
 		TSharedPtr<FExtender> toolbarExtender = MakeShareable(new FExtender);
 		toolbarExtender->AddToolBarExtension(
 			"Asset", EExtensionHook::After, nullptr,
 			FToolBarExtensionDelegate::CreateLambda(
-				[](FToolBarBuilder& toolbarBuilder)
+				[weakDataTableEx](FToolBarBuilder& toolbarBuilder)
 				{
 					toolbarBuilder.BeginSection("DataTableEx");
 					{
 						toolbarBuilder.AddToolBarButton(
 							FUIAction(FExecuteAction::CreateLambda(
-								[]()
+								[weakDataTableEx]()
 								{
+									UDataTableEx* dataTableEx = weakDataTableEx.Get();
+									if (!dataTableEx)
+									{
+										return;
+									}
+
+									dataTableEx->Save();
 								})),
 							NAME_None, LOCTEXT("ExportIconText", "Export"),
 							LOCTEXT("ExportToolTip", "Export data table"),
