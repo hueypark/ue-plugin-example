@@ -11,6 +11,9 @@ class DATATABLEEX_API UDataTableEx : public UDataTable
 	GENERATED_UCLASS_BODY()
 
 public:
+	// 저장하기 전에 호출됩니다.
+	virtual void PreSave(const class ITargetPlatform* targetPlatform);
+
 	// 저장합니다.
 	void Save() const;
 };

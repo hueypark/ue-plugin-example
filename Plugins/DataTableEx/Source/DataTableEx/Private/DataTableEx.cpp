@@ -6,6 +6,13 @@ UDataTableEx::UDataTableEx(const FObjectInitializer& ObjectInitializer) : Super(
 {
 }
 
+void UDataTableEx::PreSave(const class ITargetPlatform* targetPlatform)
+{
+	Super::PreSave(targetPlatform);
+
+	Save();
+}
+
 void UDataTableEx::Save() const
 {
 	FBufferArchive buffer;
