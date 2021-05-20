@@ -73,8 +73,8 @@ TSharedRef<SWidget> FDataTableExFactoryUI::GenerateStructPicker()
 
 	// clang-format off
 	return
-		SNew(SBox).
-		WidthOverride(330)
+		SNew(SBox)
+		.WidthOverride(330)
 		[
 			SNew(SVerticalBox)
 
