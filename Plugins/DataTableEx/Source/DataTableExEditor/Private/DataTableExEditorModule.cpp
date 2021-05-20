@@ -2,15 +2,28 @@
 
 #include "AssetTools/DataTableExActions.h"
 #include "AssetToolsModule.h"
+#include "ToolMenus.h"
+
+#define LOCTEXT_NAMESPACE "DataTableExEditorModule"
 
 void FDataTableExEditorModule::StartupModule()
 {
 	_RegisterAssetTools();
+
+	UToolMenus::RegisterStartupCallback(
+		FSimpleMulticastDelegate::FDelegate::CreateRaw(this, &FDataTableExEditorModule::_RegisterToolMenu));
 }
 
 void FDataTableExEditorModule::ShutdownModule()
 {
 	_UnregisterAssetTools();
+
+	UToolMenus::UnRegisterStartupCallback(this);
+}
+
+void FDataTableExEditorModule::SaveAllDataTableEx()
+{
+	FMessageDialog::Open(EAppMsgType::Ok, LOCTEXT("SaveAllDataFuncCalled","Save all data table ex!"));
 }
 
 void FDataTableExEditorModule::_RegisterAssetTools()
@@ -21,6 +34,21 @@ void FDataTableExEditorModule::_RegisterAssetTools()
 
 	assetTools.RegisterAssetTypeActions(action);
 	m_registeredAssetTypeActions.Add(action);
+}
+
+void FDataTableExEditorModule::_RegisterToolMenu()
+{
+	UToolMenu* toolbarMenu = UToolMenus::Get()->ExtendMenu("LevelEditor.LevelEditorToolBar");
+	if (!toolbarMenu)
+	{
+		return;
+	}
+
+	toolbarMenu->FindOrAddSection("Settings")
+		.AddEntry(FToolMenuEntry::InitToolBarButton(
+			"Button", FUIAction(FExecuteAction::CreateStatic(&FDataTableExEditorModule::SaveAllDataTableEx)),
+			LOCTEXT("SaveAllDataTableEx", "Save All Data"),
+			LOCTEXT("SaveAllDataTableExTooltip", "Save all dataTableEx.")));
 }
 
 void FDataTableExEditorModule::_UnregisterAssetTools()
@@ -40,3 +68,5 @@ void FDataTableExEditorModule::_UnregisterAssetTools()
 }
 
 IMPLEMENT_MODULE(FDataTableExEditorModule, DataTableExEditor)
+
+#undef LOCTEXT_NAMESPACE

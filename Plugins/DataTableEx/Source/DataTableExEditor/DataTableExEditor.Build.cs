@@ -39,6 +39,7 @@ public class DataTableExEditor : ModuleRules
 				"Engine",
 				"Slate",
 				"SlateCore",
+				"ToolMenus",
 				"UnrealEd",
 			}
 			);

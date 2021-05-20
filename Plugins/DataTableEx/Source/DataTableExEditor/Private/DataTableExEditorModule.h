@@ -11,9 +11,16 @@ public:
 	virtual void StartupModule() override;
 	virtual void ShutdownModule() override;
 
+public:
+	// 모든 DataTableEx 를 저장합니다.
+	static void SaveAllDataTableEx();
+
 private:
 	// 에셋 툴을 등록합니다.
 	void _RegisterAssetTools();
+
+	// 툴바 메뉴를 등록합니다.
+	void _RegisterToolMenu();
 
 	// 에셋 툴을 해제합니다.
 	void _UnregisterAssetTools();
